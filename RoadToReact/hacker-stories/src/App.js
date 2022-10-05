@@ -40,6 +40,10 @@ function App() {
         ))}
       </ul>
       <List />
+      {/* Creatting another instance */}
+      <List />
+      {/* Creatting another instance */}
+      <List />
     </div>
   );
 }
