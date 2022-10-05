@@ -27,35 +27,32 @@ const list = [
   },
 ];
 
-function App() {
-  const title = "Zoamto";
-  return (
-    <div>
-      <h1>Hello {getTitle("World!!!!!")}</h1>
-      <h2>{obj.firstname}</h2>
+const App = () => (
+  <div>
+    <h1>Hello {getTitle("World!!!!!")}</h1>
+    <h2>{obj.firstname}</h2>
 
-      <ul>
-        {list.map((item) => (
-          <li key={item.objectID}>{item.title}</li>
-        ))}
-      </ul>
-      <List />
-      {/* Creatting another instance */}
-      <List />
-      {/* Creatting another instance */}
-      <List />
-    </div>
-  );
-}
-function Search() {
+    <ul>
+      {list.map((item) => (
+        <li key={item.objectID}>{item.title}</li>
+      ))}
+    </ul>
+    <List />
+    {/* Creatting another instance */}
+    <List />
+    {/* Creatting another instance */}
+    <List />
+  </div>
+);
+const Search = () => {
   return (
     <div>
       <label htmlFor="search">Search:</label>
       <input id="search" type="text" />
     </div>
   );
-}
-function List() {
+};
+const List = () => {
   return (
     <ul>
       {list.map(function (item) {
@@ -72,12 +69,6 @@ function List() {
       })}
     </ul>
   );
-}
+};
 
 export default App;
-
-/*
-
-JSX - combines HTML and JavaScript. 
-JSX-specific attributes like className and onClick instead of class and onclick, which follows the camel case
-*/
