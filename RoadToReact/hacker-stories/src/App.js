@@ -1,5 +1,6 @@
 import logo from "./logo.svg";
 import "./App.css";
+import React from "react";
 
 const name = "React";
 const obj = { firstname: "Arjun", lastname: "Murali" };
@@ -9,6 +10,7 @@ function getTitle(title) {
 }
 
 const App = () => {
+  console.log("App renders");
   const stories = [
     {
       title: "React",
@@ -37,17 +39,25 @@ const App = () => {
   );
 };
 const Search = () => {
+  console.log("Search renders");
+  const [searchTerm, setSearchTerm] = React.useState("");
+
   const handleChange = (event) => {
-    console.log(event.target.value);
+    setSearchTerm(event.target.value);
   };
   return (
     <div>
       <label htmlFor="search">Search:</label>
       <input id="search" type="text" onChange={handleChange} />
+      <p>
+        <strong>Searching for {searchTerm}</strong>
+      </p>
     </div>
   );
 };
 const List = (props) => {
+  console.log("List renders");
+
   return (
     <ul>
       {props.list.map((item) => (
