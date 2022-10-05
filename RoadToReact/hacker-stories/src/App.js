@@ -31,24 +31,24 @@ const App = () => (
   <div>
     <h1>Hello {getTitle("World!!!!!")}</h1>
     <h2>{obj.firstname}</h2>
+    <Search />
+    <List />
 
     <ul>
       {list.map((item) => (
         <li key={item.objectID}>{item.title}</li>
       ))}
     </ul>
-    <List />
-    {/* Creatting another instance */}
-    <List />
-    {/* Creatting another instance */}
-    <List />
   </div>
 );
 const Search = () => {
+  const handleChange = (event) => {
+    console.log(event.target.value);
+  };
   return (
     <div>
       <label htmlFor="search">Search:</label>
-      <input id="search" type="text" />
+      <input id="search" type="text" onChange={handleChange} />
     </div>
   );
 };
