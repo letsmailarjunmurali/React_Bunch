@@ -1,0 +1,2 @@
+In conclusion, one can see how props are used to pass information down the component tree. 
+Following this explanation, information (props) can only be passed from a parent to a child component and not vice versa. 
