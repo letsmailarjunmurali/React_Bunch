@@ -29,21 +29,28 @@ const App = () => {
       objectID: 1,
     },
   ];
+  // A
+  const handleSearch = (event) => {
+    // C
+    console.log(event.target.value);
+  };
   return (
     <div>
       <h1>Hello {getTitle("World!!!!!")}</h1>
       <h2>{obj.firstname}</h2>
-      <Search />
+      {/* B */}
+      <Search onSearch={handleSearch} />
       <List list={stories} />
     </div>
   );
 };
-const Search = () => {
+const Search = (props) => {
   console.log("Search renders");
   const [searchTerm, setSearchTerm] = React.useState("");
 
   const handleChange = (event) => {
     setSearchTerm(event.target.value);
+    props.onSearch(event);
   };
   return (
     <div>
