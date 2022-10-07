@@ -1,3 +1,3 @@
-if we want to start properly with the initial state in the input field, we need to convert the Search component with its input field into a so-called controlled component. 
-Now the input field uses the correct initial value when displaying it in the browser. 
-When we use the searchTerm state from the App component via props, we force the input field to use this value over its internally managed element’s state.
+Since we use props to transport information from component to component frequently, it is useful to know a few tricks to make passing props more convenient. 
+If we need to access multiple properties of an object, using one line of code instead of multiple lines is often simpler and more elegant. 
+we can do it in function body or function definition
