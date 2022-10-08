@@ -66,8 +66,8 @@ const List = ({ list }) => {
 
   return (
     <ul>
-      {list.map((item) => (
-        <Item key={item.objectID} {...item} />
+      {list.map(({ objectID, ...item }) => (
+        <Item key={objectID} {...item} />
       ))}
     </ul>
   );

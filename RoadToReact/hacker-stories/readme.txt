@@ -1,3 +1,3 @@
-JavaScript’s spread operator allows us to literally spread all key/value pairs of an object to another object.
-This can also be done in React’s JSX. Instead of passing each property one at a time via props from List to Item component as before,
-we can use JavaScript’s spread operator to pass all the object’s key/value pairs as attribute/value pairs to a JSX element:
+The rest operator is always used to separate an object from some of its properties.
+Now it can be used in our List component to separate the objectID from the item, because the objectID is only used as a key and isn’t used in the Item component. 
+Only the remaining (rest) item gets spread as attribute/value pairs into the Item component (as before):
