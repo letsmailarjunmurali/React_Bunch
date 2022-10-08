@@ -1,3 +1,3 @@
-Since we use props to transport information from component to component frequently, it is useful to know a few tricks to make passing props more convenient. 
-If we need to access multiple properties of an object, using one line of code instead of multiple lines is often simpler and more elegant. 
-we can do it in function body or function definition
+JavaScript’s spread operator allows us to literally spread all key/value pairs of an object to another object.
+This can also be done in React’s JSX. Instead of passing each property one at a time via props from List to Item component as before,
+we can use JavaScript’s spread operator to pass all the object’s key/value pairs as attribute/value pairs to a JSX element:
