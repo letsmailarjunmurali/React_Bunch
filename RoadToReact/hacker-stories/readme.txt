@@ -1,7 +1,7 @@
-The concept of component composition is one of React’s more powerful features. Essentially we’ll discover how to use a React element in the same fashion as an HTML element, with an opening and closing tag
-Instead of using the label prop from before, we inserted the text “Search:” between the component’s element’s tags.
-In the InputWithLabel component, you have access to this information via React’s children prop now. 
-Instead of using the label prop, use the children prop to render everything that has been passed down from above where you want it:
-Now the React component’s elements behave similarly to native HTML. Everything that’s passed between a component’s elements can be accessed as children in the component and be rendered somewhere.
-Sometimes when using a React component, you want to have more freedom from the outside regarding what to render on the inside of a component:
-With this React feature, we can compose React components into each other. We’ve used it with a JavaScript string and with a string wrapped in an HTML <strong> element, but it doesn’t end here.
+
+All the essential steps are marked with comments that are explained step by step:
+• (A) First, create a ref with React’s useRef Hook. This ref object is a persistent value which stays intact over the lifetime of a React component. It comes with a property called current, which, in contrast to the ref object, can be changed.
+• (B) Second, the ref is passed to the input field’s JSX-reserved ref attribute and the element instance is assigned to the changeable current property.
+• (C) Third, opt into React’s lifecycle with React’s useEffect Hook, performing the focus on the input field when the component renders (or its dependencies change).
+• (D) And fourth, since the ref is passed to the input field’s ref attribute, its current property gives access to the element. Execute its focus programmatically as a side-effect, but only if isFocused is set and the current property is existent.
+This was an example of how to move from declarative to imperative programming in React. It’s not always possible to go the declarative way, so the imperative approach can be performed whenever it’s necessary.
