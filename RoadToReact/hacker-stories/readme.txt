@@ -1,6 +1,7 @@
-Have a closer look at the Search component. The label element has the text “Search: “; the id/htmlFor attributes have the search identifier; the value is called search, and the callback handler is called onSearch.
-The component is very much tied to the search feature, which makes it less reusable for the rest of the application and non-search-related tasks which would need the same label and input field.
-Also, it risks introducing bugs if two of these Search components are rendered side by side, because the htmlFor/id combination is duplicated, breaking the focus when one of the labels is clicked by the user.
-Let’s fix these underlying issues by making the Search component reusable
-Since the Search component doesn’t have any actual “search” functionality, it takes little effort to generalize the search domain-specific properties to make the component reusable for the rest of the application. 
-Let’s pass a dynamic id and label prop to the Search component, rename the actual value and callback handler to something more generic, and rename the component accordingly
+The concept of component composition is one of React’s more powerful features. Essentially we’ll discover how to use a React element in the same fashion as an HTML element, with an opening and closing tag
+Instead of using the label prop from before, we inserted the text “Search:” between the component’s element’s tags.
+In the InputWithLabel component, you have access to this information via React’s children prop now. 
+Instead of using the label prop, use the children prop to render everything that has been passed down from above where you want it:
+Now the React component’s elements behave similarly to native HTML. Everything that’s passed between a component’s elements can be accessed as children in the component and be rendered somewhere.
+Sometimes when using a React component, you want to have more freedom from the outside regarding what to render on the inside of a component:
+With this React feature, we can compose React components into each other. We’ve used it with a JavaScript string and with a string wrapped in an HTML <strong> element, but it doesn’t end here.

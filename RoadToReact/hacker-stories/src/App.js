@@ -71,14 +71,23 @@ const Search = (props) => {
         label="Search"
         value={search}
         onInputChange={onSearch}
-      />
+      >
+        <strong>Search :</strong>
+      </InputWithLabel>
     </>
   );
 };
 
-const InputWithLabel = ({ id, label, value, type = "text", onInputChange }) => (
+const InputWithLabel = ({
+  id,
+  label,
+  value,
+  type = "text",
+  onInputChange,
+  children,
+}) => (
   <>
-    <label htmlFor={id}>{label}</label>
+    <label htmlFor={id}>{children}</label>
     <input id={id} type={type} value={value} onChange={onInputChange} />
   </>
 );
