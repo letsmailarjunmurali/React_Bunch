@@ -38,8 +38,21 @@ const initialStories = [
 const App = () => {
   console.log("App renders");
 
-  const [stories, setStories] = React.useState(initialStories);
+  const [stories, setStories] = React.useState([]);
   const [searchTerm, setSearchTerm] = useSemiPersistentState("search", "");
+
+  React.useEffect(() => {
+    getAsyncStories().then((result) => {
+      setStories(result.data.stories);
+    });
+  }, []);
+
+  const getAsyncStories = () =>
+    new Promise(
+      (resolve) => setTimeout(resolve({ data: { stories: initialStories } })),
+      3000
+    );
+
   const handleRemoveStory = (item) => {
     const newStories = stories.filter(
       (story) => item.objectID !== story.objectID
@@ -49,7 +62,6 @@ const App = () => {
 
   const handleSearch = (event) => {
     setSearchTerm(event.target.value);
-    //localStorage.setItem("search", event.target.value); // side effect should not run in handler method since its managing state
   };
 
   const searchedStories = stories.filter(function (story) {
@@ -78,15 +90,6 @@ const Search = (props) => {
         value={search}
         onInputChange={onSearch}
         isFocused={true}
-      >
-        <strong>Search :</strong>
-      </InputWithLabel>
-      <InputWithLabel
-        id="search"
-        label="Search"
-        value={search}
-        isFocused={true}
-        onInputChange={onSearch}
       >
         <strong>Search :</strong>
       </InputWithLabel>
@@ -143,10 +146,6 @@ const List = ({ list, onRemoveItem }) => {
 };
 
 const Item = ({ item, onRemoveItem }) => {
-  // const handleRemoveItem = () => {
-  //   onRemoveItem(item);
-  // };
-
   return (
     <>
       <li>
