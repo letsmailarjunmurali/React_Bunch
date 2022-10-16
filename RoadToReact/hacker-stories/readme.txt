@@ -1,3 +1,5 @@
-A conditional rendering in React always happens if we have to render different JSX based on state or props.
-For example, when the application initializes for the first time, there is no data to start with. Next, we are loading data and eventually, we have the data at our disposal to display it.
-Sometimes the data fetching fails and we receive an error instead
+All state management in this application makes heavy use of React’s useState Hook. On the other hand, React’s useReducer Hook gives you more sophisticated state management.
+We’ll move the stories state management from the useState hook to a new useReducer hook. First, introduce a reducer function outside of your components.
+A reducer function always receives state and action. Based on these two arguments, a reducer always returns a new state:
+In the App component, exchange useState for useReducer for managing the stories.
+The new hook receives a reducer function and an initial state as arguments and returns an array with two items. The first item is the current state; the second item is the state updater function (also called dispatch function):
