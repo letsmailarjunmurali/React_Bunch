@@ -1,3 +1,3 @@
-This is a quick solution, because sometimes we don’t want to refactor a function component’s concise function body back to a block body to define an appropriate handler between function signature and return statement.
-While this way is more concise than the others, it can also be more difficult to debug because JavaScript logic may be hidden in JSX. 
-It becomes even more verbose if the wrapping arrow function encapsulates more than one line of implementation logic, by using a block body instead of a concise body. 
+A conditional rendering in React always happens if we have to render different JSX based on state or props.
+For example, when the application initializes for the first time, there is no data to start with. Next, we are loading data and eventually, we have the data at our disposal to display it.
+Sometimes the data fetching fails and we receive an error instead
