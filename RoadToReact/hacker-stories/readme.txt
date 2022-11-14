@@ -1,0 +1,3 @@
+In this code, we call axios axios.get() for an explicit HTTP GET request154, which is the same HTTP method we used by default with the browser’s native fetch API. 
+You can use other HTTP methods such as HTTP POST with axios.post()as well. We can see with these examples that axios is a powerful library for performing requests to remote APIs.
+ I recommend it over the native fetch API when requests become complex, working with older browsers, or for testing
