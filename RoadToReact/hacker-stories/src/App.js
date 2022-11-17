@@ -15,12 +15,7 @@ const useSemiPersistentState = (key, initialState) => {
     localStorage.getItem(key) || initialState
   );
   React.useEffect(() => {
-    if (!isMounted) {
-      isMounted.current = true;
-    } else {
-      console.log("A");
-      localStorage.setItem(key, value);
-    }
+    localStorage.setItem(key, value);
   }, [value, key]);
   return [value, setValue];
 };
@@ -52,8 +47,6 @@ const storiesReducer = (state, action) => {
 const API_ENDPOINT = "https://hn.algolia.com/api/v1/search?query=";
 
 const App = () => {
-  console.log("App renders");
-  console.log("B:App");
   const [stories, dispatchStories] = React.useReducer(storiesReducer, {
     data: [],
     isLoading: false,
@@ -83,9 +76,9 @@ const App = () => {
     handleFetchStories();
   }, [handleFetchStories]);
 
-  const handleRemoveStory = (item) => {
+  const handleRemoveStory = React.useCallback((item) => {
     dispatchStories({ type: "REMOVE_STORY", payload: item });
-  };
+  }, []);
 
   const handleSearchInput = (event) => {
     setSearchTerm(event.target.value);
@@ -96,9 +89,10 @@ const App = () => {
     event.preventDefault();
   };
 
-  const searchedStories = stories.data.filter(function (story) {
-    return story.title.toLowerCase().includes(searchTerm.toLowerCase());
-  });
+  // const searchedStories = stories.data.filter(function (story) {
+  //   return story.title.toLowerCase().includes(searchTerm.toLowerCase());
+  // });
+  console.log("B:App");
 
   return (
     <div className="container">
@@ -118,8 +112,6 @@ const App = () => {
   );
 };
 const SearchForm = ({ search, onSearch, onSubmit }) => {
-  console.log("Search renders");
-
   return (
     <>
       <form onSubmit={onSubmit} className="search-form">
@@ -179,9 +171,8 @@ const InputWithLabel = ({
   );
 };
 
-const List = ({ list, onRemoveItem }) => {
-  console.log("List renders");
-
+const List = React.memo(({ list, onRemoveItem }) => {
+  console.log("B:List");
   return (
     <ul>
       {list.map((item) => (
@@ -189,7 +180,7 @@ const List = ({ list, onRemoveItem }) => {
       ))}
     </ul>
   );
-};
+});
 
 const Item = ({ item, onRemoveItem }) => {
   return (

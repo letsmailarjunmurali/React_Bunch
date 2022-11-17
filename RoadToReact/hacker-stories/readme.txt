@@ -1,0 +1,4 @@
+While all props passed to a component stay the same, the component renders again if its parent component is forced to re-render. 
+That’s React’s default behavior, which works most of the time because the re-rendering mechanism is pretty fast. However, if re-rendering decreases the performance of a React application, React’s memo API helps prevent re-rendering. 
+As we have seen, sometimes memo alone doesn’t help, though. Callback handlers are re-defined each time in the parent component and passed as changed props to the component, which causes another re-render. 
+In that case, useCallback is used for making the callback handler only change when its dependencies change.
