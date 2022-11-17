@@ -46,6 +46,11 @@ const storiesReducer = (state, action) => {
 };
 const API_ENDPOINT = "https://hn.algolia.com/api/v1/search?query=";
 
+const getSumComments = (stories) => {
+  console.log("C");
+  return stories.data.reduce((result, value) => result + value.num_comments, 0);
+};
+
 const App = () => {
   const [stories, dispatchStories] = React.useReducer(storiesReducer, {
     data: [],
@@ -93,10 +98,10 @@ const App = () => {
   //   return story.title.toLowerCase().includes(searchTerm.toLowerCase());
   // });
   console.log("B:App");
-
+  const sumComments = React.useMemo(() => getSumComments(stories), [stories]);
   return (
     <div className="container">
-      <h1 className="headline-primary">My Hacker Stories</h1>
+      <h1 className="headline-primary">My Hacker Stories with {sumComments}</h1>
       <SearchForm
         search={searchTerm}
         onSearch={handleSearchInput}

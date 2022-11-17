@@ -1,4 +1,5 @@
-While all props passed to a component stay the same, the component renders again if its parent component is forced to re-render. 
-That’s React’s default behavior, which works most of the time because the re-rendering mechanism is pretty fast. However, if re-rendering decreases the performance of a React application, React’s memo API helps prevent re-rendering. 
-As we have seen, sometimes memo alone doesn’t help, though. Callback handlers are re-defined each time in the parent component and passed as changed props to the component, which causes another re-render. 
-In that case, useCallback is used for making the callback handler only change when its dependencies change.
+Each time text is typed in the input field of the SearchForm component, this computation runs again with an output of “C”. 
+This may be fine for a non-heavy computation like this one, but imagine this computation would take more than 500ms.
+It would give the re-rendering a delay, because everything in the component has to wait for this computation.
+We can tell React to only run a function if one of its dependencies has changed. If no dependency changed, the result of the function stays the same.
+React’s useMemo Hook helps us here:
