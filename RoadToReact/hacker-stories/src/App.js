@@ -95,9 +95,8 @@ const App = () => {
   });
 
   return (
-    <div>
-      <h1>Hello {getTitle("World!!!!!")}</h1>
-      <h2>{obj.firstname}</h2>
+    <div className="container">
+      <h1 className="headline-primary">My Hacker Stories</h1>
       <SearchForm
         search={searchTerm}
         onSearch={handleSearchInput}
@@ -117,7 +116,7 @@ const SearchForm = ({ search, onSearch, onSubmit }) => {
 
   return (
     <>
-      <form onSubmit={onSubmit}>
+      <form onSubmit={onSubmit} className="search-form">
         <InputWithLabel
           id="search"
           label="Search"
@@ -127,7 +126,11 @@ const SearchForm = ({ search, onSearch, onSubmit }) => {
         >
           <strong>Search :</strong>
         </InputWithLabel>
-        <button type="submit" disabled={!search}>
+        <button
+          type="submit"
+          disabled={!search}
+          className="button button-large"
+        >
           Submit
         </button>
       </form>
@@ -154,7 +157,9 @@ const InputWithLabel = ({
 
   return (
     <>
-      <label htmlFor={id}>{children}</label>
+      <label htmlFor={id} className="label">
+        {children}
+      </label>
       &nbsp;
       <input
         ref={inputRef}
@@ -162,6 +167,7 @@ const InputWithLabel = ({
         type={type}
         value={value}
         onChange={onInputChange}
+        className="input"
       />
     </>
   );
@@ -182,15 +188,19 @@ const List = ({ list, onRemoveItem }) => {
 const Item = ({ item, onRemoveItem }) => {
   return (
     <>
-      <li>
-        <span>
+      <li className="item">
+        <span style={{ width: "30%" }}>
           <a href={item.url}>{item.title}</a>
         </span>
-        <span>{item.author}</span>
-        <span>{item.num_comments}</span>
-        <span>{item.points}</span>
-        <span>
-          <button type="button" onClick={() => onRemoveItem(item)}>
+        <span style={{ width: "30%" }}>{item.author}</span>
+        <span style={{ width: "30%" }}>{item.num_comments}</span>
+        <span style={{ width: "30%" }}>{item.points}</span>
+        <span style={{ width: "30%" }}>
+          <button
+            className="button button_small"
+            type="button"
+            onClick={() => onRemoveItem(item)}
+          >
             Dismiss
           </button>
         </span>
