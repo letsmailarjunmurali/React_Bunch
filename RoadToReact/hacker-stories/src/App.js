@@ -2,7 +2,7 @@ import logo from "./logo.svg";
 import "./App.css";
 import React from "react";
 import axios from "axios";
-
+import { ReactComponent as Check } from "./check.svg";
 const name = "React";
 const obj = { firstname: "Arjun", lastname: "Murali" };
 
@@ -201,7 +201,7 @@ const Item = ({ item, onRemoveItem }) => {
             type="button"
             onClick={() => onRemoveItem(item)}
           >
-            Dismiss
+            <Check height="18px" width="18px" />
           </button>
         </span>
       </li>
