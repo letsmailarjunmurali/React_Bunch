@@ -85,8 +85,9 @@ const App = () => {
     setSearchTerm(event.target.value);
   };
 
-  const handleSearchSubmit = () => {
+  const handleSearchSubmit = (event) => {
     setUrl(`${API_ENDPOINT}${searchTerm}`);
+    event.preventDefault();
   };
 
   const searchedStories = stories.data.filter(function (story) {
@@ -97,11 +98,11 @@ const App = () => {
     <div>
       <h1>Hello {getTitle("World!!!!!")}</h1>
       <h2>{obj.firstname}</h2>
-      {/* B */}
-      <Search search={searchTerm} onSearch={handleSearchInput} />
-      <button type="button" disabled={!searchTerm} onClick={handleSearchSubmit}>
-        Submit
-      </button>
+      <SearchForm
+        search={searchTerm}
+        onSearch={handleSearchInput}
+        onSubmit={handleSearchSubmit}
+      />
       {stories.isError && <p>Something went wrong</p>}
       {stories.isLoading ? (
         <p>Loading......</p>
@@ -111,21 +112,25 @@ const App = () => {
     </div>
   );
 };
-const Search = (props) => {
+const SearchForm = ({ search, onSearch, onSubmit }) => {
   console.log("Search renders");
-  const { search, onSearch } = props;
 
   return (
     <>
-      <InputWithLabel
-        id="search"
-        label="Search"
-        value={search}
-        onInputChange={onSearch}
-        isFocused={true}
-      >
-        <strong>Search :</strong>
-      </InputWithLabel>
+      <form onSubmit={onSubmit}>
+        <InputWithLabel
+          id="search"
+          label="Search"
+          value={search}
+          onInputChange={onSearch}
+          isFocused={true}
+        >
+          <strong>Search :</strong>
+        </InputWithLabel>
+        <button type="submit" disabled={!search}>
+          Submit
+        </button>
+      </form>
     </>
   );
 };
@@ -139,13 +144,10 @@ const InputWithLabel = ({
   isFocused,
   children,
 }) => {
-  // A
   const inputRef = React.useRef();
 
-  // C
   React.useEffect(() => {
     if (isFocused && inputRef.current) {
-      // D
       inputRef.current.focus();
     }
   }, [isFocused]);
@@ -154,7 +156,6 @@ const InputWithLabel = ({
     <>
       <label htmlFor={id}>{children}</label>
       &nbsp;
-      {/* B */}
       <input
         ref={inputRef}
         id={id}
